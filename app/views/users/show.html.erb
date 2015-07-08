@@ -1,3 +1,13 @@
-<h1> <%= @user.email %> </h1>
+<h1> <%= image_tag @user.avatar(:thumb) %> <%=@user.email %></h1>
 
-<%= image_tag @user.avatar(:medium) %>
+
+<% if @user.images.any? %>
+  <% @user.images.each do |image| %>
+    <%= link_to (image_tag image.file(:medium), :class => "hvr-grow image"), user_image_path(@user, image) %>
+
+  <% end %>
+<% end %>
+
+<% if current_user %>
+  <%= link_to "Add an Image", new_user_image_path(current_user) %>
+<% end %>
