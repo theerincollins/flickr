@@ -9,8 +9,9 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:avatar, :email, :password) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:avatar, :email, :current_password, :admin) }
   end
 end
 
 
-# putting the avatar when user signs up 
+# putting the avatar when user signs up
